@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="蓝侍鹏的个人简历网站：摄像/策划/剪辑，代表作品包括广告片、宣传片与专题片">
+<title>个人简历 · 蓝侍鹏</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAzMiAzMic+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzMyJyByeD0nNicgZmlsbD0nIzI1NjNlYicvPjxjaXJjbGUgY3g9JzE2JyBjeT0nMTYnIHI9JzYnIGZpbGw9J3doaXRlJy8+PC9zdmc+">
+<style>
+  :root {
+    --canvas: #ffffff;
+    --ink: #111827;
+    --ink-strong: #0b1020;
+    --support: #4b5563;
+    --faint: #9aa1ad;
+    --line: #e5e7eb;
+    --wash: #f3f4f6;
+    --accent: #2563eb;
+    --accent-ink: #ffffff;
+    --accent-soft: #eff6ff;
+    --radius-card: 8px;
+    --radius-control: 4px;
+    --shadow: none;
+    --container: 1080px;
+    --gutter: 32px;
+    --gutter-mobile: 20px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    --ease: ease-out;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { display: block; max-width: 100%; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  :target { scroll-margin-top: 76px; }
+
+  .container { max-width: var(--container); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+
+  .site-header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header .container { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-size: 17px; font-weight: 700; color: var(--ink-strong); display: inline-flex; align-items: center; gap: 8px; }
+  .brand::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--accent); }
+  .nav { display: flex; gap: 4px; }
+  .nav a { padding: 8px 12px; font-size: 15px; font-weight: 500; color: var(--support); border-radius: var(--radius-control); }
+  .nav a:hover { color: var(--accent); background: var(--wash); text-decoration: none; }
+
+  .hero { padding: 64px 0 48px; }
+  .hero .container { display: grid; grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
+  .avatar {
+    width: 96px; height: 96px; border-radius: 50%;
+    background: var(--wash); border: 1px solid var(--line);
+    display: grid; place-items: center; overflow: hidden;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .avatar-caption { margin: -12px 0 0; font-size: 13px; color: var(--faint); }
+  .hero h1 { margin: 8px 0 0; font-size: 44px; line-height: 1.2; font-weight: 700; color: var(--ink-strong); letter-spacing: 0.01em; }
+  .hero .role { margin: 4px 0 0; font-size: 20px; font-weight: 600; color: var(--accent); }
+  .hero .summary { margin: 12px 0 0; max-width: 640px; font-size: 17px; color: var(--support); }
+  .hero .actions { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 48px; padding: 0 24px; border-radius: var(--radius-control);
+    font-size: 16px; font-weight: 600; border: 1px solid transparent; cursor: pointer;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { background: #1d4ed8; text-decoration: none; }
+  .btn-ghost { background: var(--canvas); color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .scroll-hint { margin-top: 32px; font-size: 14px; color: var(--faint); display: inline-flex; align-items: center; gap: 6px; }
+  .scroll-hint::after { content: ""; width: 14px; height: 14px; border-right: 2px solid var(--faint); border-bottom: 2px solid var(--faint); transform: rotate(45deg) translateY(-3px); }
+
+  .notice { margin: 0 0 8px; }
+  .notice .container {
+    margin-top: 8px;
+    background: var(--accent-soft);
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-card);
+    padding: 12px 16px;
+    font-size: 14px; color: #1e40af;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .notice .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 6px; }
+
+  .section { padding: 56px 0 8px; scroll-margin-top: 76px; }
+  .section-head { margin-bottom: 28px; }
+  .section-head .kicker { font-size: 14px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; }
+  .section-head h2 { margin: 6px 0 0; font-size: 30px; line-height: 1.25; font-weight: 700; color: var(--ink-strong); }
+  .section-head p { margin: 10px 0 0; color: var(--support); max-width: 640px; }
+
+  .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .video-card { display: flex; flex-direction: column; gap: 10px; }
+  .video-shell {
+    border: 1px solid var(--line); border-radius: var(--radius-card); overflow: hidden;
+    background: var(--ink-strong);
+  }
+  .video-shell video { width: 100%; aspect-ratio: 16 / 9; display: block; }
+  .video-caption { margin: 0; font-size: 14px; color: var(--support); }
+  .video-note { margin: 20px 0 0; font-size: 14px; color: var(--support); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { position: relative; padding: 0 0 24px 20px; border-left: 1px solid var(--line); margin-left: 6px; }
+  .timeline li::before { content: ""; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .timeline .t-time { font-size: 13px; font-weight: 500; color: var(--faint); }
+  .timeline .t-title { font-size: 16px; font-weight: 600; color: var(--ink-strong); margin-top: 2px; }
+  .timeline .t-desc { font-size: 14px; color: var(--support); margin-top: 4px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 7px 16px; font-size: 14px; font-weight: 500; color: var(--ink); background: var(--canvas); }
+  .about-note { margin-top: 16px; font-size: 13px; color: var(--support); }
+
+  .contact-band { margin-top: 56px; background: var(--wash); border-top: 1px solid var(--line); padding: 48px 0; }
+  .contact-card { border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--canvas); padding: 32px; }
+  .contact-lines { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+  .contact-lines li { display: flex; gap: 10px; align-items: baseline; font-size: 15px; color: var(--support); }
+  .contact-lines .k { min-width: 64px; font-weight: 600; color: var(--ink-strong); }
+  .contact-lines a { color: var(--accent); word-break: break-all; }
+
+  .site-footer { padding: 24px 0; border-top: 1px solid var(--line); }
+  .site-footer .container { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--faint); }
+
+  .reveal { opacity: 0; transform: translateY(10px); transition: opacity 200ms var(--ease), transform 200ms var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 768px) {
+    .section { padding-top: 44px; }
+    .hero { padding-top: 48px; }
+    .hero h1 { font-size: 32px; }
+    .hero .summary { font-size: 16px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .video-grid { grid-template-columns: 1fr; }
+    .contact-card { padding: 24px; }
+  }
+  @media (max-width: 640px) {
+    .container { padding-left: var(--gutter-mobile); padding-right: var(--gutter-mobile); }
+    .nav a { padding: 8px 8px; font-size: 14px; }
+    .hero .actions { flex-direction: column; width: 100%; }
+    .btn { width: 100%; }
+    .section-head h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top">蓝侍鹏 · 个人简历</a>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#work">作品</a>
+      <a href="#about">经历</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <div class="avatar" role="img" aria-label="蓝侍鹏">
+        <img src="photo.jpg" alt="蓝侍鹏" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <p class="avatar-caption">蓝侍鹏</p>
+      <h1>蓝侍鹏</h1>
+      <p class="role">摄像 / 策划 / 剪辑</p>
+      <p class="summary">热爱视频创作，励志拍出具有讨论价值的作品。数字媒体技术专业出身，有丰富的专业知识储备，擅长创意广告、专题片、纪录片等一系列专业视频创作。</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#work">查看作品</a>
+        <a class="btn btn-ghost" href="#contact">联系我</a>
+      </div>
+      <span class="scroll-hint">向下滚动查看作品</span>
+    </div>
+  </section>
+
+  <div class="notice">
+    <div class="container">
+      <span class="dot" aria-hidden="true"></span>
+      <span><strong>部署说明：</strong>请将 index.html 与 4 个视频文件（demo-1~4.mp4）及 photo.jpg 一起上传至服务器根目录即可部署。视频已通过 ffmpeg 转码为 1080p/H.264 网页可用格式。</span>
+    </div>
+  </div>
+
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">PORTFOLIO</span>
+        <h2>代表作品</h2>
+        <p>以下 4 个作品视频均已转码为 1080p H.264 格式，如需替换请覆盖根目录中的同名文件。</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-card reveal">
+          <div class="video-shell">
+            <video controls playsinline preload="metadata" aria-label="《与塔塔一同漫游生活》（广告片）">
+              <source src="demo-3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="video-caption">《与塔塔一同漫游生活》（广告片）</p>
+        </div>
+        <div class="video-card reveal">
+          <div class="video-shell">
+            <video controls playsinline preload="metadata" aria-label="《无名之辈》（宣传片）">
+              <source src="demo-1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="video-caption">《无名之辈》（宣传片）</p>
+        </div>
+        <div class="video-card reveal">
+          <div class="video-shell">
+            <video controls playsinline preload="metadata" aria-label="《聚光灯的背后还有\"他们\"》（宣传片）">
+              <source src="demo-2.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="video-caption">《聚光灯的背后还有"他们"》（宣传片）</p>
+        </div>
+        <div class="video-card reveal">
+          <div class="video-shell">
+            <video controls playsinline preload="metadata" aria-label="《玉米叶编织技艺》（专题片）">
+              <source src="demo-4.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="video-caption">《玉米叶编织技艺》（专题片）</p>
+        </div>
+      </div>
+      <p class="video-note">
+        <strong>荣誉：</strong>《与塔塔一同漫游生活》荣获第 17 届全国大学生广告艺术大赛视频广告领域二等奖及泡泡玛特企业特别奖。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">ABOUT</span>
+        <h2>经历与技能</h2>
+        <p>数字媒体技术专业出身，有丰富的专业知识储备，擅长创意广告、专题片、纪录片等一系列专业视频创作。</p>
+      </div>
+      <div class="about-grid">
+        <div>
+          <h3 class="title" style="font-size:18px;margin:0 0 16px;">工作 / 项目经历</h3>
+          <ul class="timeline">
+            <li class="reveal">
+              <div class="t-time">2025年11月 — 2026年3月</div>
+              <div class="t-title">摄像师 / 剪辑师 · 短视频运营</div>
+              <div class="t-desc">短视频运营的拍摄与剪辑，日常配合编导完成医院医生的知识科普口播录制，后期剪辑包装。</div>
+            </li>
+            <li class="reveal">
+              <div class="t-time">2026年4月 — 2026年6月</div>
+              <div class="t-title">摄影师 · 儿童形象摄影</div>
+              <div class="t-desc">儿童形象摄影的写真集拍摄。</div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="title" style="font-size:18px;margin:0 0 16px;">技能</h3>
+          <p style="margin:0;color:var(--support);font-size:14px;">数字媒体技术专业出身，具备创意广告、专题片、纪录片等全流程视频创作能力。</p>
+          <div class="chips">
+            <span class="chip">文案策划</span>
+            <span class="chip">视频拍摄</span>
+            <span class="chip">后期剪辑</span>
+          </div>
+          <div class="about-note">
+            擅长创意广告、专题片、纪录片等视频类型，从前期策划到后期制作的全流程把控。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-band" id="contact">
+    <div class="container">
+      <div class="contact-card reveal">
+        <div class="section-head" style="margin-bottom:8px;">
+          <span class="kicker">CONTACT</span>
+          <h2>联系我</h2>
+          <p>欢迎通过邮箱或电话与我取得联系，期待合作机会。</p>
+        </div>
+        <ul class="contact-lines">
+          <li><span class="k">邮箱</span><a href="mailto:2924775323@qq.com">2924775323@qq.com</a></li>
+          <li><span class="k">电话</span>191-6234-2506</li>
+          <li><span class="k">所在城市</span>南宁</li>
+        </ul>
+        <div class="actions" style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a class="btn btn-primary" href="mailto:2924775323@qq.com">发邮件给我</a>
+          <a class="btn btn-ghost" href="#top">回到顶部</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>&copy; 2026 蓝侍鹏 · 个人简历</span>
+    <span>摄像 · 策划 · 剪辑</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  if (!('IntersectionObserver' in window)) return;
+  var items = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(function (item) { observer.observe(item); });
+})();
+</script>
+
+</body>
+</html>
